@@ -176,9 +176,9 @@ public class DoublePinballui : Form {
     ball_clock.Enabled = false;
     ball_clock.Interval = ball_clock_interval;
     ball_clock.Elapsed += new ElapsedEventHandler(update_ball_coords);
-    // set default center location
-    X = (display_panel.Width/2);
-    Y = (display_panel.Height/2);
+    // set location to start at 1/3 of width
+    X = display_panel.Width/3;
+    Y = display_panel.Height/2;
     CenterToScreen(); // Center the screen when program is opened
   } // End of ui constructor
 

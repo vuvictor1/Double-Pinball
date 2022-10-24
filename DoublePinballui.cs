@@ -245,7 +245,7 @@ public class DoublePinballui : Form {
       ui_refresh_clock.Enabled = false;
       ball_clock.Enabled = false;
     }
-  }   // End of go
+  } // End of go
 
   // tracks the current location of the ball
   protected void refresh_ui(Object sender, EventArgs h) {
@@ -273,5 +273,5 @@ public class DoublePinballui : Form {
       }
       base.OnPaint(ii);
     } // OnPaint end
-  }   // End of graphics constructor
+  } // End of graphics constructor
 } // End of main class

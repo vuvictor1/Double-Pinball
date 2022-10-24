@@ -53,8 +53,12 @@ public class DoublePinballui : Form {
   private static double direction; // input direction in degrees
   private static double X;
   private static double Y;
+  private static double X2;
+  private static double Y2;
   private static double ball_center_x;
   private static double ball_center_y;
+  private static double ball_center_x2;
+  private static double ball_center_y2;
   private static double Δx;
   private static double Δy;
   private static double ball_speed_pixel_per_tic;
@@ -179,6 +183,8 @@ public class DoublePinballui : Form {
     // set location to start at 1/3 of width
     X = display_panel.Width/3;
     Y = display_panel.Height/2;
+    X2 = display_panel.Width - display_panel.Width/3;
+    Y2 = display_panel.Height/2;
     CenterToScreen(); // Center the screen when program is opened
   } // End of ui constructor
 
@@ -199,6 +205,8 @@ public class DoublePinballui : Form {
         // set to coordinates to ball center
         ball_center_x = X;
         ball_center_y = Y;
+        ball_center_x2 = X2;
+        ball_center_y2 = Y2;
         ball_speed_pixel_per_tic = speed/motion_clock_rate; // control the speed
         // convert degrees to radians
         Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
@@ -261,6 +269,7 @@ public class DoublePinballui : Form {
       if (ball_visible) {
         // (x, y, width, length)
         graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x - 12.5), (float)Math.Round(ball_center_y - 12.5), 25, 25);
+        graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x2 - 12.5), (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
       }
       base.OnPaint(ii);
     } // OnPaint end

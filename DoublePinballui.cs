@@ -61,6 +61,8 @@ public class DoublePinballui : Form {
   private static double ball_center_y2;
   private static double Δx;
   private static double Δy;
+  private static double Δx2;
+  private static double Δy2;
   private static double ball_speed_pixel_per_tic;
   private static bool button_pressed = false; // control if statement
   private static bool ball_visible = false;
@@ -211,6 +213,8 @@ public class DoublePinballui : Form {
         // convert degrees to radians
         Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
         Δy = (ball_speed_pixel_per_tic)*Math.Sin(((Math.PI / 180) * -direction));
+        Δx2 = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
+        Δy2 = (ball_speed_pixel_per_tic)*Math.Sin(((Math.PI / 180) * -direction));
         display_panel.Invalidate(); // calls OnPaint
       } // end of if statement
     } // end of try
@@ -223,12 +227,20 @@ public class DoublePinballui : Form {
   protected void update_ball_coords(System.Object sender, ElapsedEventArgs even) {
     // check if ball has collided with any wall
     ball_center_x += Δx;
+    ball_center_x2 += Δx2;
     if (ball_center_x + 12.5 >= 1015 || ball_center_x - 12.5 <= 0) {
       Δx = -1 * Δx;
     }
+    if (ball_center_x2 + 12.5 >= 1015 || ball_center_x2 - 12.5 <= 0) {
+      Δx2 = -1 * Δx2;
+    }
     ball_center_y += Δy;
+    ball_center_y2 += Δy2;
     if (ball_center_y + 12.5 >= display_panel.Height || ball_center_y - 12.5 <= 0) {
       Δy = -1 * Δy;
+    }
+    if (ball_center_y2 + 12.5 >= display_panel.Height || ball_center_y2 - 12.5 <= 0) {
+      Δy2 = -1 * Δy2;
     }
   } // End of method update_ball_coords
 

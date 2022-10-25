@@ -204,7 +204,7 @@ public class DoublePinballui : Form {
         start_button.Enabled = true;
         speed_input.Clear();
         direction_input.Clear();
-        // set to coordinates to ball center
+        // set the coordinates to ball center
         ball_center_x = X;
         ball_center_y = Y;
         ball_center_x2 = X2;
@@ -225,7 +225,7 @@ public class DoublePinballui : Form {
 
   // Function to update coords & animate the ball
   protected void update_ball_coords(System.Object sender, ElapsedEventArgs even) {
-    // check if ball has collided with any wall
+    // check if the balls have collided with anything
     ball_center_x += Δx;
     ball_center_x2 += Δx2;
     if (ball_center_x + 12.5 >= 1015 || ball_center_x - 12.5 <= 0) {

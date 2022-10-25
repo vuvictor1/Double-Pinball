@@ -242,6 +242,11 @@ public class DoublePinballui : Form {
     if (ball_center_y2 + 12.5 >= display_panel.Height || ball_center_y2 - 12.5 <= 0) {
       Δy2 = -1 * Δy2;
     }
+    // works
+    if (ball_center_x +12.5 >= ball_center_x2 -12.5) {
+      Δx = -1 * Δx;
+      Δx2 = -1 * Δx2;
+    }
   } // End of method update_ball_coords
 
   // Function called to start animation

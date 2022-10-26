@@ -277,7 +277,7 @@ public class DoublePinballui : Form {
       if (ball_visible) {
         // (x, y, width, length)
         graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x - 12.5), (float)Math.Round(ball_center_y - 12.5), 25, 25);
-        graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x2 - 12.5), (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+        graph.FillEllipse(Brushes.White, (float)Math.Round(ball_center_x2 - 12.5), (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
       }
       base.OnPaint(ii);
     } // OnPaint end

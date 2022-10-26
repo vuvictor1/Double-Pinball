@@ -31,7 +31,6 @@ public class DoublePinballui : Form {
   private Label author = new Label();
   private Label speed_label = new Label();
   private TextBox speed_input = new TextBox();
-  private Button initialize_button = new Button();
   private Button start_button = new Button();
   private Label coords = new Label();
   private Label x_label = new Label();
@@ -63,7 +62,6 @@ public class DoublePinballui : Form {
   private static double Δy2;
   private static double ball_speed_pixel_per_tic;
   private static bool button_pressed = false; // control if statement
-  private static bool ball_visible = false;
   // Declare ball timer and interval
   private double ball_clock_interval = 1000.00/motion_clock_rate;
   private static System.Timers.Timer ball_clock = new System.Timers.Timer();
@@ -80,7 +78,6 @@ public class DoublePinballui : Form {
     Text = "Ricochet Pinball";
     author.Text = "Ricochet Ball by Victor V. Vu";
     speed_label.Text = "Enter Speed (pixel/seconds)";
-    initialize_button.Text = "Initialize";
     start_button.Text = "Start";
     coords.Text = "Coordinates";
     x_label.Text = "X =";
@@ -90,7 +87,6 @@ public class DoublePinballui : Form {
     author.Size = new Size(440, 40);
     speed_label.Size = new Size(230, 30);
     speed_input.Size = new Size(70, 60);
-    initialize_button.Size = new Size(120, 60);
     start_button.Size = new Size(120, 60);
     coords.Size = new Size(100, 30);
     x_label.Size = new Size(30, 30);
@@ -105,14 +101,12 @@ public class DoublePinballui : Form {
     header_panel.BackColor = Color.Cornsilk;
     display_panel.BackColor = Color.BurlyWood;
     control_panel.BackColor = Color.CornflowerBlue;
-    initialize_button.BackColor = Color.MediumAquamarine;
     start_button.BackColor = Color.MediumAquamarine;
     quit_button.BackColor = Color.MediumAquamarine;
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     speed_input.Font = new Font("Times New Roman", 15, FontStyle.Regular);
-    initialize_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     coords.Font = new Font("Times New Roman", 15, FontStyle.Underline);
     x_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -131,7 +125,6 @@ public class DoublePinballui : Form {
     author.Location = new Point(300, 5);
     speed_label.Location = new Point(300, 25);
     speed_input.Location = new Point(340, 60);
-    initialize_button.Location = new Point(110, 35);
     start_button.Location = new Point(110, 110);
     coords.Location = new Point(610, 50);
     x_label.Location = new Point(550, 100);
@@ -149,7 +142,6 @@ public class DoublePinballui : Form {
     Controls.Add(control_panel);
     control_panel.Controls.Add(speed_label);
     control_panel.Controls.Add(speed_input);
-    control_panel.Controls.Add(initialize_button);
     control_panel.Controls.Add(start_button);
     control_panel.Controls.Add(coords);
     control_panel.Controls.Add(x_label);
@@ -158,8 +150,6 @@ public class DoublePinballui : Form {
     control_panel.Controls.Add(y_coord);
     control_panel.Controls.Add(quit_button);
     // Control buttons when clicked
-    initialize_button.Click += new EventHandler(initialize);
-    start_button.Enabled = false; // start is disabled at launch
     start_button.Click += new EventHandler(start);
     quit_button.Click += new EventHandler(terminate);
     // Set properties of the refresh clock
@@ -175,27 +165,24 @@ public class DoublePinballui : Form {
     Y = display_panel.Height/2;
     X2 = display_panel.Width - display_panel.Width/3;
     Y2 = display_panel.Height/2;
+    // allow ball center to control coords
+    ball_center_x = X;
+    ball_center_y = Y;
+    ball_center_x2 = X2;
+    ball_center_y2 = Y2;
     CenterToScreen(); // Center the screen when program is opened
   } // End of ui constructor
 
-  // Function draw balls at center and clears inputs
-  protected void initialize(Object sender, EventArgs h) {
+  // Function to start animation & perform computations
+  protected void start(Object sender, EventArgs h) {
     try { // check if user inputted coords
       if (speed_input != null) {
         // convert input to double then display starting coords
         speed = double.Parse(speed_input.Text);
         x_coord.Text = "" + (int)Math.Round(X) + "";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
-        // restore control to start
-        ball_visible = true;
-        start_button.Enabled = true;
-        speed_input.Clear();
-        // set the coordinates to ball center
-        ball_center_x = X;
-        ball_center_y = Y;
-        ball_center_x2 = X2;
-        ball_center_y2 = Y2;
-        ball_speed_pixel_per_tic = speed/motion_clock_rate; // control the speed
+
+        ball_speed_pixel_per_tic = speed / motion_clock_rate; // control the speed
         // convert degrees to radians
         direction = 0; // place holder code for now until randomizer is written
         Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
@@ -208,6 +195,17 @@ public class DoublePinballui : Form {
     catch (Exception) { // prevents program from crashing in case of error
       Console.WriteLine("No input detected"); // program does nothing
     } // end of catch
+    if (button_pressed == false) { // begin timers
+      start_button.Text = "Pause";
+      button_pressed = true;
+      ui_refresh_clock.Enabled = true;
+      ball_clock.Enabled = true;
+    } else { // pause timers
+      start_button.Text = "Resume";
+      button_pressed = false;
+      ui_refresh_clock.Enabled = false;
+      ball_clock.Enabled = false;
+    }
   } // End of method initialize
 
   // Function to update coords & animate the ball
@@ -240,21 +238,6 @@ public class DoublePinballui : Form {
     }
   } // End of method update_ball_coords
 
-  // Function called to start animation
-  protected void start(Object sender, EventArgs h) {
-    if (button_pressed == false) { // begin timer
-      start_button.Text = "Pause";
-      button_pressed = true;
-      ui_refresh_clock.Enabled = true;
-      ball_clock.Enabled = true;
-    } else { // pause timers
-      start_button.Text = "Resume";
-      button_pressed = false;
-      ui_refresh_clock.Enabled = false;
-      ball_clock.Enabled = false;
-    }
-  } // End of go
-
   // tracks the current location of the ball
   protected void refresh_ui(Object sender, EventArgs h) {
     x_coord.Text = "" + (int)Math.Round(ball_center_x) + "";
@@ -274,11 +257,9 @@ public class DoublePinballui : Form {
     // Calls OnPaint to draw ball
     protected override void OnPaint(PaintEventArgs ii) {
       Graphics graph = ii.Graphics;
-      if (ball_visible) {
         // (x, y, width, length)
         graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x - 12.5), (float)Math.Round(ball_center_y - 12.5), 25, 25);
         graph.FillEllipse(Brushes.White, (float)Math.Round(ball_center_x2 - 12.5), (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
-      }
       base.OnPaint(ii);
     } // OnPaint end
   } // End of graphics constructor

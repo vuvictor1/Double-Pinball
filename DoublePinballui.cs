@@ -74,8 +74,8 @@ public class DoublePinballui : Form {
     MaximumSize = max_exit_ui_size;
     MinimumSize = min_exit_ui_size;
     // Initialize string variables
-    Text = "Ricochet Pinball";
-    author.Text = "Ricochet Ball by Victor V. Vu";
+    Text = "Double Pinball Rebound";
+    author.Text = "Billiard Balls by Victor V. Vu";
     speed_label1.Text = "Enter Red Speed (p/s)";
     start_button.Text = "Start";
     red_label.Text = "Red Ball Location";

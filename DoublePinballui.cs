@@ -100,7 +100,7 @@ public class DoublePinballui : Form {
     control_panel.BackColor = Color.CornflowerBlue;
     start_button.BackColor = Color.MediumAquamarine;
     quit_button.BackColor = Color.MediumAquamarine;
-    speed_input1.BackColor = Color.Khaki; 
+    speed_input1.BackColor = Color.Khaki;
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -224,7 +224,7 @@ public class DoublePinballui : Form {
     }
     // checks if the two balls collided with each other
     if (ball_center_x + 12.5 >= ball_center_x2 - 12.5) {
-      Δx = -1 * Δx;
+      Δx = -1 * Δx; // remove negative to make balls go through each other
       Δx2 = -1 * Δx2;
     }
     if (ball_center_y + 12.5 >= ball_center_y - 12.5 ) {

@@ -125,7 +125,7 @@ public class DoublePinballui : Form {
     author.Location = new Point(300, 5);
     speed_label.Location = new Point(300, 25);
     speed_input.Location = new Point(340, 60);
-    start_button.Location = new Point(110, 110);
+    start_button.Location = new Point(110, 75);
     coords.Location = new Point(610, 50);
     x_label.Location = new Point(550, 100);
     y_label.Location = new Point(650, 100);
@@ -181,8 +181,8 @@ public class DoublePinballui : Form {
         speed = double.Parse(speed_input.Text);
         x_coord.Text = "" + (int)Math.Round(X) + "";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
-
-        ball_speed_pixel_per_tic = speed / motion_clock_rate; // control the speed
+        // control the speed
+        ball_speed_pixel_per_tic = speed / motion_clock_rate;
         // convert degrees to radians
         direction = 0; // place holder code for now until randomizer is written
         Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));

@@ -173,7 +173,7 @@ public class DoublePinballui : Form {
       if (speed_input1 != null) {
         // convert input to double then display starting coords
         speed1 = double.Parse(speed_input1.Text);
-        red_coord.Text = "" + (int)Math.Round(X) + "";
+        red_coord.Text = "(" + (int)Math.Round(X) + ", " + (int)Math.Round(Y) + ")";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
         // control the speed
         ball_speed_pixel_per_tic = speed1 / motion_clock_rate;
@@ -234,7 +234,7 @@ public class DoublePinballui : Form {
 
   // tracks the current location of the ball
   protected void refresh_ui(Object sender, EventArgs h) {
-    red_coord.Text = "" + (int)Math.Round(ball_center_x) + "";
+    red_coord.Text = "(" + (int)Math.Round(ball_center_x) + ", " + (int)Math.Round(ball_center_y) + ")";
     y_coord.Text = "" + (int)Math.Round(ball_center_y) + "";
     display_panel.Invalidate(); // calls OnPaint
   }

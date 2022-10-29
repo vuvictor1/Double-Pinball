@@ -100,6 +100,7 @@ public class DoublePinballui : Form {
     control_panel.BackColor = Color.CornflowerBlue;
     start_button.BackColor = Color.MediumAquamarine;
     quit_button.BackColor = Color.MediumAquamarine;
+    speed_input1.BackColor = Color.Khaki; 
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);

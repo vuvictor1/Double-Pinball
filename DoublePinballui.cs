@@ -33,7 +33,6 @@ public class DoublePinballui : Form {
   private TextBox speed_input1 = new TextBox();
   private Button start_button = new Button();
   private Label red_label = new Label();
-  private Label x_label = new Label();
   private Label y_label = new Label();
   private TextBox x_coord = new TextBox();
   private TextBox y_coord = new TextBox();

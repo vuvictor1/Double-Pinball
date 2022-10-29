@@ -29,10 +29,10 @@ using System.Timers;
 // Call functions in form library & delcare variables
 public class DoublePinballui : Form {
   private Label author = new Label();
-  private Label speed_label = new Label();
-  private TextBox speed_input = new TextBox();
+  private Label speed_label1 = new Label();
+  private TextBox speed_input1 = new TextBox();
   private Button start_button = new Button();
-  private Label coords = new Label();
+  private Label red_label = new Label();
   private Label x_label = new Label();
   private Label y_label = new Label();
   private TextBox x_coord = new TextBox();
@@ -46,7 +46,7 @@ public class DoublePinballui : Form {
   // set up constants and static variables
   private const double refresh_rate = 60.00; // speed in Hz
   private const double motion_clock_rate = 42.60; // speed in tics/seconds
-  private static double speed; // input speed in pixel/seconds
+  private static double speed1; // input speed in pixel/seconds
   private static double direction; // input direction in degrees
   private static double X;
   private static double Y;
@@ -77,19 +77,17 @@ public class DoublePinballui : Form {
     // Initialize string variables
     Text = "Ricochet Pinball";
     author.Text = "Ricochet Ball by Victor V. Vu";
-    speed_label.Text = "Enter Speed (pixel/seconds)";
+    speed_label1.Text = "Enter Red Speed (p/s)";
     start_button.Text = "Start";
-    coords.Text = "Coordinates";
-    x_label.Text = "X =";
+    red_label.Text = "Red Ball Location";
     y_label.Text = "Y =";
     quit_button.Text = "Quit";
     // Set size values (width, length)
     author.Size = new Size(440, 40);
-    speed_label.Size = new Size(230, 30);
-    speed_input.Size = new Size(70, 60);
+    speed_label1.Size = new Size(230, 30);
+    speed_input1.Size = new Size(70, 60);
     start_button.Size = new Size(120, 60);
-    coords.Size = new Size(100, 30);
-    x_label.Size = new Size(30, 30);
+    red_label.Size = new Size(150, 30);
     y_label.Size = new Size(30, 30);
     x_coord.Size = new Size(50, 60);
     y_coord.Size = new Size(50, 60);
@@ -105,29 +103,27 @@ public class DoublePinballui : Form {
     quit_button.BackColor = Color.MediumAquamarine;
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
-    speed_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
-    speed_input.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    speed_input1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
-    coords.Font = new Font("Times New Roman", 15, FontStyle.Underline);
-    x_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    red_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     x_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     quit_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     // Set text alignment and property
     author.TextAlign = ContentAlignment.MiddleCenter;
-    speed_input.TextAlign = HorizontalAlignment.Center;
+    speed_input1.TextAlign = HorizontalAlignment.Center;
     x_coord.TextAlign = HorizontalAlignment.Center;
     y_coord.TextAlign = HorizontalAlignment.Center;
     x_coord.ReadOnly = true;
     y_coord.ReadOnly = true;
     // Set locations (width, length)
     author.Location = new Point(300, 5);
-    speed_label.Location = new Point(300, 25);
-    speed_input.Location = new Point(340, 60);
+    speed_label1.Location = new Point(300, 25);
+    speed_input1.Location = new Point(340, 60);
     start_button.Location = new Point(110, 75);
-    coords.Location = new Point(610, 50);
-    x_label.Location = new Point(550, 100);
+    red_label.Location = new Point(300, 100);
     y_label.Location = new Point(650, 100);
     x_coord.Location = new Point(590, 100);
     y_coord.Location = new Point(690, 100);
@@ -140,11 +136,10 @@ public class DoublePinballui : Form {
     header_panel.Controls.Add(author);
     Controls.Add(display_panel);
     Controls.Add(control_panel);
-    control_panel.Controls.Add(speed_label);
-    control_panel.Controls.Add(speed_input);
+    control_panel.Controls.Add(speed_label1);
+    control_panel.Controls.Add(speed_input1);
     control_panel.Controls.Add(start_button);
-    control_panel.Controls.Add(coords);
-    control_panel.Controls.Add(x_label);
+    control_panel.Controls.Add(red_label);
     control_panel.Controls.Add(y_label);
     control_panel.Controls.Add(x_coord);
     control_panel.Controls.Add(y_coord);
@@ -176,13 +171,13 @@ public class DoublePinballui : Form {
   // Function to start animation & perform computations
   protected void start(Object sender, EventArgs h) {
     try { // check if user inputted coords
-      if (speed_input != null) {
+      if (speed_input1 != null) {
         // convert input to double then display starting coords
-        speed = double.Parse(speed_input.Text);
+        speed1 = double.Parse(speed_input1.Text);
         x_coord.Text = "" + (int)Math.Round(X) + "";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
         // control the speed
-        ball_speed_pixel_per_tic = speed / motion_clock_rate;
+        ball_speed_pixel_per_tic = speed1 / motion_clock_rate;
         // convert degrees to radians
         direction = 0; // place holder code for now until randomizer is written
         Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));

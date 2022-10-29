@@ -34,7 +34,7 @@ public class DoublePinballui : Form {
   private Button start_button = new Button();
   private Label red_label = new Label();
   private Label y_label = new Label();
-  private TextBox x_coord = new TextBox();
+  private TextBox red_coord = new TextBox();
   private TextBox y_coord = new TextBox();
   private Button quit_button = new Button();
   private Panel header_panel = new Panel();
@@ -88,7 +88,7 @@ public class DoublePinballui : Form {
     start_button.Size = new Size(120, 60);
     red_label.Size = new Size(150, 30);
     y_label.Size = new Size(30, 30);
-    x_coord.Size = new Size(50, 60);
+    red_coord.Size = new Size(100, 60);
     y_coord.Size = new Size(50, 60);
     quit_button.Size = new Size(120, 60);
     header_panel.Size = new Size(1024, 50);
@@ -107,15 +107,15 @@ public class DoublePinballui : Form {
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     red_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
-    x_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    red_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     quit_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     // Set text alignment and property
     author.TextAlign = ContentAlignment.MiddleCenter;
     speed_input1.TextAlign = HorizontalAlignment.Center;
-    x_coord.TextAlign = HorizontalAlignment.Center;
+    red_coord.TextAlign = HorizontalAlignment.Center;
     y_coord.TextAlign = HorizontalAlignment.Center;
-    x_coord.ReadOnly = true;
+    red_coord.ReadOnly = true;
     y_coord.ReadOnly = true;
     // Set locations (width, length)
     author.Location = new Point(300, 5);
@@ -124,7 +124,7 @@ public class DoublePinballui : Form {
     start_button.Location = new Point(110, 75);
     red_label.Location = new Point(300, 100);
     y_label.Location = new Point(650, 100);
-    x_coord.Location = new Point(590, 100);
+    red_coord.Location = new Point(320, 130);
     y_coord.Location = new Point(690, 100);
     quit_button.Location = new Point(790, 75);
     header_panel.Location = new Point(0, 0);
@@ -140,7 +140,7 @@ public class DoublePinballui : Form {
     control_panel.Controls.Add(start_button);
     control_panel.Controls.Add(red_label);
     control_panel.Controls.Add(y_label);
-    control_panel.Controls.Add(x_coord);
+    control_panel.Controls.Add(red_coord);
     control_panel.Controls.Add(y_coord);
     control_panel.Controls.Add(quit_button);
     // Control buttons when clicked
@@ -173,7 +173,7 @@ public class DoublePinballui : Form {
       if (speed_input1 != null) {
         // convert input to double then display starting coords
         speed1 = double.Parse(speed_input1.Text);
-        x_coord.Text = "" + (int)Math.Round(X) + "";
+        red_coord.Text = "" + (int)Math.Round(X) + "";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
         // control the speed
         ball_speed_pixel_per_tic = speed1 / motion_clock_rate;
@@ -234,7 +234,7 @@ public class DoublePinballui : Form {
 
   // tracks the current location of the ball
   protected void refresh_ui(Object sender, EventArgs h) {
-    x_coord.Text = "" + (int)Math.Round(ball_center_x) + "";
+    red_coord.Text = "" + (int)Math.Round(ball_center_x) + "";
     y_coord.Text = "" + (int)Math.Round(ball_center_y) + "";
     display_panel.Invalidate(); // calls OnPaint
   }

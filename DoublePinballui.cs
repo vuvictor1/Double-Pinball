@@ -85,8 +85,8 @@ public class DoublePinballui : Form {
     quit_button.Text = "Quit";
     // Set size values (width, length)
     author.Size = new Size(440, 40);
-    speed_label1.Size = new Size(230, 30);
-    speed_label2.Size = new Size(230, 30);
+    speed_label1.Size = new Size(200, 30);
+    speed_label2.Size = new Size(200, 30);
     speed_input1.Size = new Size(70, 60);
     start_button.Size = new Size(120, 60);
     red_label.Size = new Size(150, 30);
@@ -125,7 +125,7 @@ public class DoublePinballui : Form {
     // Set locations (width, length)
     author.Location = new Point(300, 5);
     speed_label1.Location = new Point(300, 25);
-    speed_label2.Location = new Point(500, 25);
+    speed_label2.Location = new Point(510, 25);
     speed_input1.Location = new Point(340, 60);
     start_button.Location = new Point(110, 75);
     red_label.Location = new Point(300, 100);

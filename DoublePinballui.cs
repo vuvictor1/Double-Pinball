@@ -48,6 +48,7 @@ public class DoublePinballui : Form {
   private const double refresh_rate = 60.00; // speed in Hz
   private const double motion_clock_rate = 42.60; // speed in tics/seconds
   private static double speed1; // input speed in pixel/seconds
+  private static double speed2; // input speed in pixel/seconds
   private static double direction; // input direction in degrees
   private static double X;
   private static double Y;
@@ -61,7 +62,8 @@ public class DoublePinballui : Form {
   private static double Δy;
   private static double Δx2;
   private static double Δy2;
-  private static double ball_speed_pixel_per_tic;
+  private static double ball_speed_pixel_per_tic1;
+  private static double ball_speed_pixel_per_tic2;
   private static bool button_pressed = false; // control if statement
   // Declare ball timer and interval
   private double ball_clock_interval = 1000.00/motion_clock_rate;
@@ -184,19 +186,21 @@ public class DoublePinballui : Form {
   // Function to start animation & perform computations
   protected void start(Object sender, EventArgs h) {
     try { // check if user inputted coords
-      if (speed_input1 != null) {
+      if ((speed_input1 ?? speed_input2) != null) {
         // convert input to double then display starting coords
         speed1 = double.Parse(speed_input1.Text);
+        speed2 = double.Parse(speed_input2.Text);
         red_coord.Text = "(" + (int)Math.Round(X) + ", " + (int)Math.Round(Y) + ")";
         y_coord.Text = "" + (int)Math.Round(Y) + "";
         // control the speed
-        ball_speed_pixel_per_tic = speed1 / motion_clock_rate;
+        ball_speed_pixel_per_tic1 = speed1 / motion_clock_rate;
+        ball_speed_pixel_per_tic2 = speed2 / motion_clock_rate;
         // convert degrees to radians
         direction = 0; // place holder code for now until randomizer is written
-        Δx = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
-        Δy = (ball_speed_pixel_per_tic)*Math.Sin(((Math.PI / 180) * -direction));
-        Δx2 = (ball_speed_pixel_per_tic)*Math.Cos(((Math.PI / 180) * -direction));
-        Δy2 = (ball_speed_pixel_per_tic)*Math.Sin(((Math.PI / 180) * -direction));
+        Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction));
+        Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction));
+        Δx2 = (ball_speed_pixel_per_tic2)*Math.Cos(((Math.PI / 180) * -direction));
+        Δy2 = (ball_speed_pixel_per_tic2)*Math.Sin(((Math.PI / 180) * -direction));
         display_panel.Invalidate(); // calls OnPaint
       } // end of if statement
     } // end of try

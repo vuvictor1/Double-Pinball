@@ -35,7 +35,7 @@ public class DoublePinballui : Form {
   private TextBox speed_input2 = new TextBox();
   private Button start_button = new Button();
   private Label red_label = new Label();
-  private Label y_label = new Label();
+  private Label white_label = new Label();
   private TextBox red_coord = new TextBox();
   private TextBox y_coord = new TextBox();
   private Button quit_button = new Button();
@@ -85,7 +85,7 @@ public class DoublePinballui : Form {
     speed_label2.Text = "Enter White Speed (p/s)";
     start_button.Text = "Start";
     red_label.Text = "Red Ball Location";
-    y_label.Text = "Y =";
+    white_label.Text = "White Ball Location";
     quit_button.Text = "Quit";
     // Set size values (width, length)
     author.Size = new Size(440, 40);
@@ -95,7 +95,7 @@ public class DoublePinballui : Form {
     speed_input2.Size = new Size(70, 60);
     start_button.Size = new Size(120, 60);
     red_label.Size = new Size(150, 30);
-    y_label.Size = new Size(30, 30);
+    white_label.Size = new Size(170, 30);
     red_coord.Size = new Size(100, 60);
     y_coord.Size = new Size(50, 60);
     quit_button.Size = new Size(120, 60);
@@ -118,7 +118,7 @@ public class DoublePinballui : Form {
     speed_input2.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     red_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
-    y_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    white_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     red_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     quit_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -138,7 +138,7 @@ public class DoublePinballui : Form {
     speed_input2.Location = new Point(550, 60);
     start_button.Location = new Point(110, 75);
     red_label.Location = new Point(300, 100);
-    y_label.Location = new Point(650, 100);
+    white_label.Location = new Point(500, 100);
     red_coord.Location = new Point(320, 130);
     y_coord.Location = new Point(690, 100);
     quit_button.Location = new Point(790, 75);
@@ -156,7 +156,7 @@ public class DoublePinballui : Form {
     control_panel.Controls.Add(speed_input2);
     control_panel.Controls.Add(start_button);
     control_panel.Controls.Add(red_label);
-    control_panel.Controls.Add(y_label);
+    control_panel.Controls.Add(white_label);
     control_panel.Controls.Add(red_coord);
     control_panel.Controls.Add(y_coord);
     control_panel.Controls.Add(quit_button);

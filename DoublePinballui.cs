@@ -30,6 +30,7 @@ using System.Timers;
 public class DoublePinballui : Form {
   private Label author = new Label();
   private Label speed_label1 = new Label();
+  private Label speed_label2 = new Label();
   private TextBox speed_input1 = new TextBox();
   private Button start_button = new Button();
   private Label red_label = new Label();
@@ -77,6 +78,7 @@ public class DoublePinballui : Form {
     Text = "Double Pinball Rebound";
     author.Text = "Billiard Balls by Victor V. Vu";
     speed_label1.Text = "Enter Red Speed (p/s)";
+    speed_label2.Text = "Enter White Speed (p/s)";
     start_button.Text = "Start";
     red_label.Text = "Red Ball Location";
     y_label.Text = "Y =";
@@ -84,6 +86,7 @@ public class DoublePinballui : Form {
     // Set size values (width, length)
     author.Size = new Size(440, 40);
     speed_label1.Size = new Size(230, 30);
+    speed_label2.Size = new Size(230, 30);
     speed_input1.Size = new Size(70, 60);
     start_button.Size = new Size(120, 60);
     red_label.Size = new Size(150, 30);
@@ -104,6 +107,7 @@ public class DoublePinballui : Form {
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    speed_label2.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     speed_input1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     red_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -121,6 +125,7 @@ public class DoublePinballui : Form {
     // Set locations (width, length)
     author.Location = new Point(300, 5);
     speed_label1.Location = new Point(300, 25);
+    speed_label2.Location = new Point(500, 25);
     speed_input1.Location = new Point(340, 60);
     start_button.Location = new Point(110, 75);
     red_label.Location = new Point(300, 100);
@@ -137,6 +142,7 @@ public class DoublePinballui : Form {
     Controls.Add(display_panel);
     Controls.Add(control_panel);
     control_panel.Controls.Add(speed_label1);
+    control_panel.Controls.Add(speed_label2);
     control_panel.Controls.Add(speed_input1);
     control_panel.Controls.Add(start_button);
     control_panel.Controls.Add(red_label);

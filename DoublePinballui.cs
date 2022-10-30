@@ -49,7 +49,8 @@ public class DoublePinballui : Form {
   private const double motion_clock_rate = 42.60; // speed in tics/seconds
   private static double speed1; // input speed in pixel/seconds
   private static double speed2; // input speed in pixel/seconds
-  private static double direction; // input direction in degrees
+  private static double direction1; // generate direction
+  private static double direction2; // generate direction
   private static double X;
   private static double Y;
   private static double X2;
@@ -196,11 +197,12 @@ public class DoublePinballui : Form {
         ball_speed_pixel_per_tic1 = speed1 / motion_clock_rate;
         ball_speed_pixel_per_tic2 = speed2 / motion_clock_rate;
         // convert degrees to radians
-        direction = 0; // place holder code for now until randomizer is written
-        Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction));
-        Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction));
-        Δx2 = (ball_speed_pixel_per_tic2)*Math.Cos(((Math.PI / 180) * -direction));
-        Δy2 = (ball_speed_pixel_per_tic2)*Math.Sin(((Math.PI / 180) * -direction));
+        direction1 = 0; // place holder code for now until randomizer is written
+        direction2 = 0;
+        Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction1));
+        Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction1));
+        Δx2 = (ball_speed_pixel_per_tic2)*Math.Cos(((Math.PI / 180) * -direction2));
+        Δy2 = (ball_speed_pixel_per_tic2)*Math.Sin(((Math.PI / 180) * -direction2));
         display_panel.Invalidate(); // calls OnPaint
       } // end of if statement
     } // end of try

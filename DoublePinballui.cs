@@ -32,6 +32,7 @@ public class DoublePinballui : Form {
   private Label speed_label1 = new Label();
   private Label speed_label2 = new Label();
   private TextBox speed_input1 = new TextBox();
+  private TextBox speed_input2 = new TextBox();
   private Button start_button = new Button();
   private Label red_label = new Label();
   private Label y_label = new Label();
@@ -88,6 +89,7 @@ public class DoublePinballui : Form {
     speed_label1.Size = new Size(200, 30);
     speed_label2.Size = new Size(200, 30);
     speed_input1.Size = new Size(70, 60);
+    speed_input2.Size = new Size(70, 60);
     start_button.Size = new Size(120, 60);
     red_label.Size = new Size(150, 30);
     y_label.Size = new Size(30, 30);
@@ -104,11 +106,13 @@ public class DoublePinballui : Form {
     start_button.BackColor = Color.MediumAquamarine;
     quit_button.BackColor = Color.MediumAquamarine;
     speed_input1.BackColor = Color.Khaki;
+    speed_input2.BackColor = Color.Khaki;
     // Set text fonts and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     speed_label2.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     speed_input1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+    speed_input2.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     start_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     red_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     y_label.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -118,6 +122,7 @@ public class DoublePinballui : Form {
     // Set text alignment and property
     author.TextAlign = ContentAlignment.MiddleCenter;
     speed_input1.TextAlign = HorizontalAlignment.Center;
+    speed_input2.TextAlign = HorizontalAlignment.Center;
     red_coord.TextAlign = HorizontalAlignment.Center;
     y_coord.TextAlign = HorizontalAlignment.Center;
     red_coord.ReadOnly = true;
@@ -127,6 +132,7 @@ public class DoublePinballui : Form {
     speed_label1.Location = new Point(300, 25);
     speed_label2.Location = new Point(510, 25);
     speed_input1.Location = new Point(340, 60);
+    speed_input2.Location = new Point(550, 60);
     start_button.Location = new Point(110, 75);
     red_label.Location = new Point(300, 100);
     y_label.Location = new Point(650, 100);
@@ -144,6 +150,7 @@ public class DoublePinballui : Form {
     control_panel.Controls.Add(speed_label1);
     control_panel.Controls.Add(speed_label2);
     control_panel.Controls.Add(speed_input1);
+    control_panel.Controls.Add(speed_input2);
     control_panel.Controls.Add(start_button);
     control_panel.Controls.Add(red_label);
     control_panel.Controls.Add(y_label);

@@ -72,6 +72,9 @@ public class DoublePinballui : Form {
   // Declare the refresh clock.
   private double refresh_clock_interval = 1000.00/refresh_rate;
   private static System.Timers.Timer ui_refresh_clock = new System.Timers.Timer();
+  // generate random numbers for degree
+  private Random number_creator1 = new Random();
+  private Random number_creator2 = new Random();
 
   // Initialize Variables
   public DoublePinballui() {
@@ -196,14 +199,16 @@ public class DoublePinballui : Form {
         // control the speed
         ball_speed_pixel_per_tic1 = speed1 / motion_clock_rate;
         ball_speed_pixel_per_tic2 = speed2 / motion_clock_rate;
+        // generate numbers between 0-360 degrees
+        direction1 = number_creator1.NextDouble() * (360-0) + (0);
+        direction2 = number_creator2.NextDouble() * (360-0) + (0);
+        Console.WriteLine(direction1);
+        Console.WriteLine(direction2);
         // convert degrees to radians
-        direction1 = 0; // place holder code for now until randomizer is written
-        direction2 = 0;
         Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction1));
         Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction1));
         Δx2 = (ball_speed_pixel_per_tic2)*Math.Cos(((Math.PI / 180) * -direction2));
         Δy2 = (ball_speed_pixel_per_tic2)*Math.Sin(((Math.PI / 180) * -direction2));
-        display_panel.Invalidate(); // calls OnPaint
       } // end of if statement
     } // end of try
     catch (Exception) { // prevents program from crashing in case of error
@@ -242,14 +247,10 @@ public class DoublePinballui : Form {
       Δy2 = -1 * Δy2;
     }
     // checks if the two balls collided with each other
-    if (ball_center_x + 12.5 >= ball_center_x2 - 12.5) {
-      Δx = -1 * Δx; // remove negative to make balls go through each other
-      Δx2 = -1 * Δx2;
-    }
-    if (ball_center_y + 12.5 >= ball_center_y - 12.5 ) {
-      Δy = -1 * Δy;
-      Δy2 = -1 * Δy2;
-    }
+    //if (ball_center_x + 12.5 >= ball_center_x2 - 12.5) {
+    //}
+    //if (ball_center_y + 12.5 >= ball_center_y2 - 12.5 ) {
+    //}
   } // End of method update_ball_coords
 
   // tracks the current location of the ball
@@ -261,7 +262,7 @@ public class DoublePinballui : Form {
 
   // Function called by quit button to terminate
   protected void terminate(Object sender, EventArgs h) {
-    System.Console.WriteLine("This program will now quit.");
+    Console.WriteLine("This program will now quit.");
     Close();
   }
 

@@ -202,8 +202,6 @@ public class DoublePinballui : Form {
         // generate numbers between 0-360 degrees
         direction1 = number_creator1.NextDouble() * (360-0) + (0);
         direction2 = number_creator2.NextDouble() * (360-0) + (0);
-        Console.WriteLine(direction1);
-        Console.WriteLine(direction2);
         // convert degrees to radians
         Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction1));
         Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction1));

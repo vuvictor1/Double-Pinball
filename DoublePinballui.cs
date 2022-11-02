@@ -48,9 +48,9 @@ public class DoublePinballui : Form {
   private const double refresh_rate = 60.00; // speed in Hz
   private const double motion_clock_rate = 42.60; // speed in tics/seconds
   private static double speed1; // input speed in pixel/seconds
-  private static double speed2; // input speed in pixel/seconds
-  private static double direction1; // generate direction
-  private static double direction2; // generate direction
+  private static double speed2;
+  private static double direction1; // used to generate directions
+  private static double direction2;
   private static double X;
   private static double Y;
   private static double X2;
@@ -66,13 +66,15 @@ public class DoublePinballui : Form {
   private static double ball_speed_pixel_per_tic1;
   private static double ball_speed_pixel_per_tic2;
   private static bool button_pressed = false; // control if statement
+  private static bool normal_color = true; // control ball color
+  private static double ball_collision; // hold the distance between ball centers
   // Declare ball timer and interval
   private double ball_clock_interval = 1000.00/motion_clock_rate;
   private static System.Timers.Timer ball_clock = new System.Timers.Timer();
   // Declare the refresh clock.
   private double refresh_clock_interval = 1000.00/refresh_rate;
   private static System.Timers.Timer ui_refresh_clock = new System.Timers.Timer();
-  // generate random numbers for degree
+  // Hold random numbers for degree
   private Random number_creator1 = new Random();
   private Random number_creator2 = new Random();
 
@@ -245,10 +247,11 @@ public class DoublePinballui : Form {
       Δy2 = -1 * Δy2;
     }
     // checks if the two balls collided with each other
-    //if (ball_center_x + 12.5 >= ball_center_x2 - 12.5) {
-    //}
-    //if (ball_center_y + 12.5 >= ball_center_y2 - 12.5 ) {
-    //}
+    ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
+                               Math.Pow((ball_center_y - ball_center_y2), 2));
+    if (ball_collision <= 25) { // collision if distance is smaller than radius
+      Console.WriteLine("Collision!");
+    }
   } // End of method update_ball_coords
 
   // tracks the current location of the ball
@@ -270,9 +273,23 @@ public class DoublePinballui : Form {
     // Calls OnPaint to draw ball
     protected override void OnPaint(PaintEventArgs ii) {
       Graphics graph = ii.Graphics;
+      if (normal_color) {
         // (x, y, width, length)
-        graph.FillEllipse(Brushes.Crimson, (float)Math.Round(ball_center_x - 12.5), (float)Math.Round(ball_center_y - 12.5), 25, 25);
-        graph.FillEllipse(Brushes.White, (float)Math.Round(ball_center_x2 - 12.5), (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+        graph.FillEllipse(Brushes.Crimson,
+                          (float)Math.Round(ball_center_x - 12.5),
+                          (float)Math.Round(ball_center_y - 12.5), 25, 25);
+        graph.FillEllipse(Brushes.White,
+                          (float)Math.Round(ball_center_x2 - 12.5),
+                          (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+      }
+      else { // switch colors after collision
+        graph.FillEllipse(Brushes.Blue,
+                          (float)Math.Round(ball_center_x - 12.5),
+                          (float)Math.Round(ball_center_y - 12.5), 25, 25);
+        graph.FillEllipse(Brushes.Purple,
+                          (float)Math.Round(ball_center_x2 - 12.5),
+                          (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+      }
       base.OnPaint(ii);
     } // OnPaint end
   } // End of graphics constructor

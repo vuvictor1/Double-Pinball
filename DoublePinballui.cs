@@ -250,7 +250,8 @@ public class DoublePinballui : Form {
     ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
                                Math.Pow((ball_center_y - ball_center_y2), 2));
     if (ball_collision <= 25) { // collision if distance is smaller than radius
-      Console.WriteLine("Collision!");
+      normal_color = !normal_color; // change color
+      Console.WriteLine("Collision detected"); // placeholder for debugging purposes
     }
   } // End of method update_ball_coords
 

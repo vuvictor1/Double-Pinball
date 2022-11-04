@@ -67,6 +67,7 @@ public class DoublePinballui : Form {
   private static double ball_speed_pixel_per_tic2;
   private static bool button_pressed = false; // control if statement
   private static bool normal_color = true; // control ball color
+  private static bool in_collision = false; // control collision check
   private static double ball_collision; // hold the distance between ball centers
   // Declare ball timer and interval
   private double ball_clock_interval = 1000.00/motion_clock_rate;
@@ -249,9 +250,13 @@ public class DoublePinballui : Form {
     // checks if the two balls collided with each other
     ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
                                Math.Pow((ball_center_y - ball_center_y2), 2));
-    if (ball_collision <= 25) { // collision if distance is smaller than radius
+    if (ball_collision <= 25 && in_collision == false) { // collision if distance is smaller than radius
       normal_color = !normal_color; // change color
+      in_collision = true; // instruct program of the first collision
       Console.WriteLine("Collision detected"); // placeholder for debugging purposes
+    }
+    else if (ball_collision >= 25) { // reset the collision detection
+      in_collision = false;
     }
   } // End of method update_ball_coords
 

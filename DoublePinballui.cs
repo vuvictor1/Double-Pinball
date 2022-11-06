@@ -233,29 +233,28 @@ public class DoublePinballui : Form {
     // check if the balls have collided with walls
     ball_center_x += Δx;
     ball_center_x2 += Δx2;
-    if (ball_center_x + 12.5 >= 1015 || ball_center_x - 12.5 <= 0) {
+    if (ball_center_x + 25 >= 1015 || ball_center_x - 25 <= 0) {
       Δx = -1 * Δx;
     }
-    if (ball_center_x2 + 12.5 >= 1015 || ball_center_x2 - 12.5 <= 0) {
+    if (ball_center_x2 + 25 >= 1015 || ball_center_x2 - 25 <= 0) {
       Δx2 = -1 * Δx2;
     }
     ball_center_y += Δy;
     ball_center_y2 += Δy2;
-    if (ball_center_y + 12.5 >= display_panel.Height || ball_center_y - 12.5 <= 0) {
+    if (ball_center_y + 25 >= display_panel.Height || ball_center_y - 25 <= 0) {
       Δy = -1 * Δy;
     }
-    if (ball_center_y2 + 12.5 >= display_panel.Height || ball_center_y2 - 12.5 <= 0) {
+    if (ball_center_y2 + 25 >= display_panel.Height || ball_center_y2 - 25 <= 0) {
       Δy2 = -1 * Δy2;
     }
     // checks if the two balls collided with each other
     ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
                                Math.Pow((ball_center_y - ball_center_y2), 2));
-    if (ball_collision <= 25 && in_collision == false) { // collision if distance is smaller than radius
+    if (ball_collision <= 50 && in_collision == false) { // collision if distance is smaller than radius
       normal_color = !normal_color; // change color
-      in_collision = true; // instruct program of the first collision
-      Console.WriteLine("Collision detected"); // placeholder for debugging purposes
+      in_collision = true; // first collision has been detected
     }
-    else if (ball_collision >= 25) { // reset the collision detection
+    else if (ball_collision >= 50) { // reset the collision
       in_collision = false;
     }
   } // End of method update_ball_coords
@@ -282,19 +281,19 @@ public class DoublePinballui : Form {
       if (normal_color) {
         // (x, y, width, length)
         graph.FillEllipse(Brushes.Crimson,
-                          (float)Math.Round(ball_center_x - 12.5),
-                          (float)Math.Round(ball_center_y - 12.5), 25, 25);
+                          (float)Math.Round(ball_center_x - 25),
+                          (float)Math.Round(ball_center_y - 25), 50, 50);
         graph.FillEllipse(Brushes.White,
-                          (float)Math.Round(ball_center_x2 - 12.5),
-                          (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+                          (float)Math.Round(ball_center_x2 - 25),
+                          (float)Math.Round(ball_center_y2 - 25), 50, 50);
       }
       else { // switch colors after collision
         graph.FillEllipse(Brushes.Blue,
-                          (float)Math.Round(ball_center_x - 12.5),
-                          (float)Math.Round(ball_center_y - 12.5), 25, 25);
+                          (float)Math.Round(ball_center_x - 25),
+                          (float)Math.Round(ball_center_y - 25), 50, 50);
         graph.FillEllipse(Brushes.Purple,
-                          (float)Math.Round(ball_center_x2 - 12.5),
-                          (float)Math.Round(ball_center_y2 - 12.5), 25, 25);
+                          (float)Math.Round(ball_center_x2 - 25),
+                          (float)Math.Round(ball_center_y2 - 25), 50, 50);
       }
       base.OnPaint(ii);
     } // OnPaint end

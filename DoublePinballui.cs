@@ -1,26 +1,25 @@
-//******************************************************************************
-// Author Information:
-// Name: Victor V. Vu
-// Email: vuvictor@csu.fullerton.edu
-// Section: 223N-01
-//
-// Program Information:
-// Program Name: Double Pinball Rebound
-// This File: DoublePinballui.cs
-// Description: UI file containing animations for the double rebounding balls
-//******************************************************************************
-// Copyright (C) 2022 Victor V. Vu
-// This program is free software: you can redistribute it and/or modify it under
-// the terms of the GNU General Public License version 3 as published by the
-// Free Software Foundation. This program is distributed in the hope that it
-// will be useful, but WITHOUT ANY WARRANTY without even the implied Warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-// Public License for more details. A copy of the GNU General Public License v3
-// is available here: <https://www.gnu.org/licenses/>.
-//******************************************************************************
-// Programmed in Ubuntu-based Linux Platform.
-// To run program, type in terminal: "sh r.sh"
-//******************************************************************************
+/*******************************************************************************
+   Author Information:
+   Name: Victor V. Vu
+   Email: vuvictor@csu.fullerton.edu
+
+   Program Information:
+   Program Name: Double Pinball Rebound
+   This File: DoublePinballui.cs
+   Description: UI file containing animations for the double rebounding balls
+
+   Copyright (C) 2022 Victor V. Vu
+   This program is free software: you can redistribute it and/or modify it under
+   the terms of the GNU General Public License version 3 as published by the
+   Free Software Foundation. This program is distributed in the hope that it
+   will be useful, but WITHOUT ANY WARRANTY without even the implied Warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+   Public License for more details. A copy of the GNU General Public License v3
+   is available here: <https://www.gnu.org/licenses/>.
+
+   Programmed in Ubuntu-based Linux Platform.
+   To run bash script, type in terminal: "sh r.sh"
+*******************************************************************************/
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -44,7 +43,8 @@ public class DoublePinballui : Form {
   private Panel control_panel = new Panel();
   private Size max_exit_ui_size = new Size(1024, 900);
   private Size min_exit_ui_size = new Size(1024, 900);
-  // set up constants and static variables
+
+  // Set up constants and static variables
   private const double refresh_rate = 60.00; // speed in Hz
   private const double motion_clock_rate = 42.60; // speed in tics/seconds
   private static double speed1; // input speed in pixel/seconds
@@ -65,17 +65,18 @@ public class DoublePinballui : Form {
   private static double Δy2;
   private static double ball_speed_pixel_per_tic1;
   private static double ball_speed_pixel_per_tic2;
+  private static double ball_collision; // hold the distance between ball centers
   private static bool button_pressed = false; // control if statement
   private static bool normal_color = true; // control ball color
   private static bool in_collision = false; // control collision check
-  private static double ball_collision; // hold the distance between ball centers
-  // Declare ball timer and interval
+
+  // Declare ball/refresh timers and intervals
   private double ball_clock_interval = 1000.00/motion_clock_rate;
   private static System.Timers.Timer ball_clock = new System.Timers.Timer();
-  // Declare the refresh clock.
   private double refresh_clock_interval = 1000.00/refresh_rate;
   private static System.Timers.Timer ui_refresh_clock = new System.Timers.Timer();
-  // Hold random numbers for degree
+
+  // Store random numbers for degree
   private Random number_creator1 = new Random();
   private Random number_creator2 = new Random();
 
@@ -84,6 +85,7 @@ public class DoublePinballui : Form {
     // Assign size to the ui
     MaximumSize = max_exit_ui_size;
     MinimumSize = min_exit_ui_size;
+
     // Initialize string variables
     Text = "Double Pinball Rebound";
     author.Text = "Billiard Balls by Victor V. Vu";
@@ -93,6 +95,7 @@ public class DoublePinballui : Form {
     red_label.Text = "Red Ball Location";
     white_label.Text = "White Ball Location";
     quit_button.Text = "Quit";
+
     // Set size values (width, length)
     author.Size = new Size(440, 40);
     speed_label1.Size = new Size(200, 30);
@@ -108,6 +111,7 @@ public class DoublePinballui : Form {
     header_panel.Size = new Size(1024, 50);
     display_panel.Size = new Size(1024, 625);
     control_panel.Size = new Size(1024, 200);
+
     // Set colors for panel and buttons
     header_panel.BackColor = Color.Cornsilk;
     display_panel.BackColor = Color.BurlyWood;
@@ -116,7 +120,8 @@ public class DoublePinballui : Form {
     quit_button.BackColor = Color.MediumAquamarine;
     speed_input1.BackColor = Color.Khaki;
     speed_input2.BackColor = Color.Khaki;
-    // Set text fonts and font size
+
+    // Set text font and font size
     author.Font = new Font("Times New Roman", 26, FontStyle.Regular);
     speed_label1.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     speed_label2.Font = new Font("Times New Roman", 15, FontStyle.Regular);
@@ -128,6 +133,7 @@ public class DoublePinballui : Form {
     red_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     white_coord.Font = new Font("Times New Roman", 15, FontStyle.Regular);
     quit_button.Font = new Font("Times New Roman", 15, FontStyle.Regular);
+
     // Set text alignment and property
     author.TextAlign = ContentAlignment.MiddleCenter;
     speed_input1.TextAlign = HorizontalAlignment.Center;
@@ -136,6 +142,7 @@ public class DoublePinballui : Form {
     white_coord.TextAlign = HorizontalAlignment.Center;
     red_coord.ReadOnly = true;
     white_coord.ReadOnly = true;
+
     // Set locations (width, length)
     author.Location = new Point(300, 5);
     speed_label1.Location = new Point(300, 25);
@@ -151,6 +158,7 @@ public class DoublePinballui : Form {
     header_panel.Location = new Point(0, 0);
     display_panel.Location = new Point(0, 50);
     control_panel.Location = new Point(0, 675);
+
     // Control elements to display
     Controls.Add(header_panel);
     header_panel.Controls.Add(author);
@@ -166,23 +174,28 @@ public class DoublePinballui : Form {
     control_panel.Controls.Add(red_coord);
     control_panel.Controls.Add(white_coord);
     control_panel.Controls.Add(quit_button);
+
     // Control buttons when clicked
     start_button.Click += new EventHandler(start);
     quit_button.Click += new EventHandler(terminate);
+
     // Set properties of the refresh clock
     ui_refresh_clock.Enabled = false;
     ui_refresh_clock.Interval = refresh_clock_interval;
     ui_refresh_clock.Elapsed += new ElapsedEventHandler(refresh_ui);
-    // Prepare the ball clock properties
+
+    // Set properties of the ball clock
     ball_clock.Enabled = false;
     ball_clock.Interval = ball_clock_interval;
     ball_clock.Elapsed += new ElapsedEventHandler(update_ball_coords);
-    // set location to start at 1/3 of width
+
+    // Set location to start at 1/3 of width
     X = display_panel.Width/3;
     Y = display_panel.Height/2;
     X2 = display_panel.Width - display_panel.Width/3;
     Y2 = display_panel.Height/2;
-    // allow ball center to control coords
+
+    // Allow ball center to control coords
     ball_center_x = X;
     ball_center_y = Y;
     ball_center_x2 = X2;

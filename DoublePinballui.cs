@@ -201,6 +201,7 @@ public class DoublePinballui : Form {
     ball_center_y = Y;
     ball_center_x2 = X2;
     ball_center_y2 = Y2;
+
     CenterToScreen(); // Center the screen when program is opened
   } // End of ui constructor
 

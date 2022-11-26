@@ -154,7 +154,7 @@ public class DoublePinballui : Form {
     red_label.Location = new Point(300, 100);
     white_label.Location = new Point(500, 100);
     red_coord.Location = new Point(320, 130);
-    white_coord.Location = new Point(520, 130);
+    white_coord.Location = new Point(530, 130);
     quit_button.Location = new Point(790, 75);
     header_panel.Location = new Point(0, 0);
     display_panel.Location = new Point(0, 50);
@@ -297,8 +297,7 @@ public class DoublePinballui : Form {
     // Calls OnPaint to draw ball
     protected override void OnPaint(PaintEventArgs ii) {
       Graphics graph = ii.Graphics;
-      if (normal_color) {
-        // (x, y, width, length)
+      if (normal_color) { // (x, y, width, length)
         graph.FillEllipse(Brushes.Crimson,
                           (float)Math.Round(ball_center_x - 25),
                           (float)Math.Round(ball_center_y - 25), 50, 50);

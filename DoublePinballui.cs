@@ -20,6 +20,7 @@
    Programmed in Ubuntu-based Linux Platform.
    To run bash script, type in terminal: "sh r.sh"
 *******************************************************************************/
+
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -212,12 +213,15 @@ public class DoublePinballui : Form {
         speed2 = double.Parse(speed_input2.Text);
         red_coord.Text = "(" + (int)Math.Round(X) + ", " + (int)Math.Round(Y) + ")";
         white_coord.Text = "(" + (int)Math.Round(X2) + ", " + (int)Math.Round(Y2) + ")";
+
         // control the speed
         ball_speed_pixel_per_tic1 = speed1 / motion_clock_rate;
         ball_speed_pixel_per_tic2 = speed2 / motion_clock_rate;
-        // generate numbers between 0-360 degrees
+
+        // generate random numbers between 0-360 degrees
         direction1 = number_creator1.NextDouble() * (360-0) + (0);
         direction2 = number_creator2.NextDouble() * (360-0) + (0);
+
         // convert degrees to radians
         Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction1));
         Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction1));
@@ -228,6 +232,7 @@ public class DoublePinballui : Form {
     catch (Exception) { // prevents program from crashing in case of error
       Console.WriteLine("No input detected"); // program does nothing
     } // end of catch
+
     if (button_pressed == false) { // begin timers
       start_button.Text = "Pause";
       button_pressed = true;
@@ -260,6 +265,7 @@ public class DoublePinballui : Form {
     if (ball_center_y2 + 25 >= display_panel.Height || ball_center_y2 - 25 <= 0) {
       Δy2 = -1 * Δy2;
     }
+
     // checks if the two balls collided with each other
     ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
                                Math.Pow((ball_center_y - ball_center_y2), 2));
@@ -272,14 +278,14 @@ public class DoublePinballui : Form {
     }
   } // End of method update_ball_coords
 
-  // tracks the current location of the ball
+  // Tracks the current location of the ball
   protected void refresh_ui(Object sender, EventArgs h) {
     red_coord.Text = "(" + (int)Math.Round(ball_center_x) + ", " + (int)Math.Round(ball_center_y) + ")";
     white_coord.Text = "(" + (int)Math.Round(ball_center_x2) + ", " + (int)Math.Round(ball_center_y2) + ")";
     display_panel.Invalidate(); // calls OnPaint
   }
 
-  // Function called by quit button to terminate
+  // Called by quit button to terminate
   protected void terminate(Object sender, EventArgs h) {
     Console.WriteLine("This program will now quit.");
     Close();

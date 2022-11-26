@@ -1,4 +1,4 @@
-Program animating two balls that ricochet off the 4 walls. Featured with random direction generation, collision detection, location trackers and control buttons. Requires user input for speed. Ball colors are changed upon collision from red/blue to white/purple. Program written in C#. Runs using a bash script file.
+Program animating two balls that ricochet off the 4 walls. Featured with random direction generation, collision detection, location trackers and control buttons. Upon collision, colors are changed from red/blue to white/purple. Requires user input for speed. Program written in C#. Runs using a bash script file.
 
 ***Run Instructions***
 ```

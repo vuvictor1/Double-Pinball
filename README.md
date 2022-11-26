@@ -1,4 +1,8 @@
-Program animating two balls that ricochet off the 4 walls. Featured with random direction generation, collision detection, location trackers and control buttons. Upon collision with each other, ball colors are changed from red/blue to white/purple. Requires user input for speed. Program written in C#. Runs using bash script.
+# Double-Pinball
+
+Program with two rebounding objects. 
+
+Animates balls that ricochet off the 4 walls. Featured with random direction generation, collision detection, location trackers and control buttons. Upon collision with each other, ball colors are changed from red/blue to white/purple. Requires user input for speed. Program written in C#. Runs using bash script.
 
 ***Run Instructions***
 ```

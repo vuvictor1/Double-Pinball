@@ -1,4 +1,4 @@
-Program that animates two pinballs ricocheting off the 4 walls. Featured with random direction generator, location tracker and control buttons. Requires user input for speed. Ball colors are changed upon collision detection. Program written in C#. Runs using a bash script file.
+Program animating two balls that ricochet off the 4 walls. Featured with random direction generation, collision detection, location trackers and control buttons. Requires user input for speed. Ball colors are changed upon collision detection. Program written in C#. Runs using a bash script file.
 
 ***Run Instructions***
 ```

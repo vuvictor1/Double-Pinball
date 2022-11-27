@@ -1,17 +1,12 @@
 /*******************************************************************************
-   Source Information:
-   Name: W3Schools 
-   Website: https://www.w3schools.com/howto/howto_css_contact_form.asp   
-
-   Author 2 Information:
+   Author Information:
    Name: Victor V. Vu
    Email: vuvictor@csu.fullerton.edu
-
    Program Information:
-   Program Name: Victor Vu's Website  
-   This File: style.css   
-   Description: css file required for webpage setup  
-
+   Program Name: Double Pinball Rebound
+   This File: DoublePinballmain.cs
+   Description: Manager file that will call on UI file to display animations
+   
    Copyright (C) 2022 Victor V. Vu
    This program is free software: you can redistribute it and/or modify it under
    the terms of the GNU General Public License version 3 as published by the
@@ -20,6 +15,9 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
    Public License for more details. A copy of the GNU General Public License v3
    is available here: <https://www.gnu.org/licenses/>.
+   
+   Programmed in Ubuntu-based Linux Platform.
+   To run bash script, type in terminal: "sh r.sh"
 *******************************************************************************/
 
 // Inlcudes the required system files

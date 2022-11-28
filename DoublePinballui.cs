@@ -20,7 +20,7 @@
    Programmed in Ubuntu-based Linux Platform.
    To run bash script, type in terminal: "sh r.sh"
 *******************************************************************************/
-
+// Required System files
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -207,39 +207,39 @@ public class DoublePinballui : Form {
 
   // Function to start animation & perform computations
   protected void start(Object sender, EventArgs h) {
-    try { // check if user inputted coords
+    try { // Check for proper user input
       if ((speed_input1 ?? speed_input2) != null) {
-        // convert input to double then display starting coords
+        // Convert input to double then display starting coords
         speed1 = double.Parse(speed_input1.Text);
         speed2 = double.Parse(speed_input2.Text);
         red_coord.Text = "(" + (int)Math.Round(X) + ", " + (int)Math.Round(Y) + ")";
         white_coord.Text = "(" + (int)Math.Round(X2) + ", " + (int)Math.Round(Y2) + ")";
 
-        // control the speed
+        // Control object speeds
         ball_speed_pixel_per_tic1 = speed1 / motion_clock_rate;
         ball_speed_pixel_per_tic2 = speed2 / motion_clock_rate;
 
-        // generate random numbers between 0-360 degrees
+        // Generate random numbers between 0-360 degrees
         direction1 = number_creator1.NextDouble() * (360-0) + (0);
         direction2 = number_creator2.NextDouble() * (360-0) + (0);
 
-        // convert degrees to radians
+        // Convert degrees to radians
         Δx = (ball_speed_pixel_per_tic1)*Math.Cos(((Math.PI / 180) * -direction1));
         Δy = (ball_speed_pixel_per_tic1)*Math.Sin(((Math.PI / 180) * -direction1));
         Δx2 = (ball_speed_pixel_per_tic2)*Math.Cos(((Math.PI / 180) * -direction2));
         Δy2 = (ball_speed_pixel_per_tic2)*Math.Sin(((Math.PI / 180) * -direction2));
       } // end of if statement
     } // end of try
-    catch (Exception) { // prevents program from crashing in case of error
+    catch (Exception) { // Prevents program from crashing in case of error
       Console.WriteLine("No input detected"); // program does nothing
     } // end of catch
 
-    if (button_pressed == false) { // begin timers
+    if (button_pressed == false) { // Begin timers
       start_button.Text = "Pause";
       button_pressed = true;
       ui_refresh_clock.Enabled = true;
       ball_clock.Enabled = true;
-    } else { // pause timers
+    } else { // Pause timers
       start_button.Text = "Resume";
       button_pressed = false;
       ui_refresh_clock.Enabled = false;
@@ -247,9 +247,9 @@ public class DoublePinballui : Form {
     }
   } // End of method initialize
 
-  // Function to update coords & animate the ball
+  // Update coords & animate the ball
   protected void update_ball_coords(System.Object sender, ElapsedEventArgs even) {
-    // check if the balls have collided with walls
+    // Check if the balls have collided with walls
     ball_center_x += Δx;
     ball_center_x2 += Δx2;
     if (ball_center_x + 25 >= 1015 || ball_center_x - 25 <= 0) {
@@ -267,7 +267,7 @@ public class DoublePinballui : Form {
       Δy2 = -1 * Δy2;
     }
 
-    // checks if the two balls collided with each other
+    // Checks if the two balls collided with each other
     ball_collision = Math.Sqrt(Math.Pow((ball_center_x - ball_center_x2), 2) +
                                Math.Pow((ball_center_y - ball_center_y2), 2));
     if (ball_collision <= 50 && in_collision == false) { // collision if distance is smaller than radius
